@@ -1,0 +1,4 @@
+export NODE_OPTIONS=--openssl-legacy-provider
+
+unset NODE_OPTIONS
+kill -9 $(lsof -ti:3000)
