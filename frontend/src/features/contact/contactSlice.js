@@ -61,7 +61,7 @@ export const contactSlice = createSlice({
                     name: item.name,
                     phone: item.phone,
                     sent: true
-                }))
+                })) 
             })  
             .addCase(createContactAsync.fulfilled, (state, action) => {
                 state.status = 'idle'
