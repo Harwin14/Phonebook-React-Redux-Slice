@@ -72,7 +72,7 @@ export const contactSlice = createSlice({
                             name: action.payload.data.name,
                             phone: action.payload.data.phone,
                             sent: true
-                        }
+                        } 
                     } 
                     return item
                 })  
