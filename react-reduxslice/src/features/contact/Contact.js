@@ -7,7 +7,7 @@ import { faContactBook, faPlus } from '@fortawesome/free-solid-svg-icons'
 // import ContactSearch from "../../components/ContactSearch";
 
 
-export default function Contact(props) {
+export default function Contact() {
     const [user, setUser] = useState({
         isAdd: false
     })
