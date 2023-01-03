@@ -75,7 +75,7 @@ export const contactSlice = createSlice({
                         }
                     }
                     return item
-                }) 
+                })  
             }) 
             .addCase(deleteContactAsync.fulfilled, (state, action) => {
                 state.value = state.value.filter(item => item.id !== action.payload)
