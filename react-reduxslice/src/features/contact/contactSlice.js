@@ -73,10 +73,10 @@ export const contactSlice = createSlice({
                             phone: action.payload.data.phone,
                             sent: true
                         }
-                    }
+                    } 
                     return item
                 })  
-            })   
+            })    
             .addCase(deleteContactAsync.fulfilled, (state, action) => {
                 state.value = state.value.filter(item => item.id !== action.payload)
             })
