@@ -4,10 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import ContactItem from "../../components/ContactItem"
 import {
-    readContactAsync,
-    selectContact,
-    deleteContactAsync,
-    createContactAsync
+    loadContactAsync, loadPagination, addContactAsync, removeContactAsync, updateContactAsync, selectContact
 }from './contactSlice'
 
 
@@ -18,22 +15,22 @@ export default function ContactList(props) {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(readContactAsync())
+        dispatch(loadContactAsync())
     }, [dispatch])
     // [dispatch] itu watcher / penonton yg []
     //klo variable berubah ngerender /jalan ulang
 
-    // const scrolling = (event) => {
-    //     var element = event.target;
-    //     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-    //         dispatch(loadMore())
-    //     }
-    // }
+    const scrolling = (event) => {
+        var element = event.target;
+        if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+            dispatch(loadPagination())
+        }
+    }
 
  
         return (
             <div
-                // onScroll={scrolling}
+                onScroll={scrolling}
                 style={{ overflowY: "scroll", height: 350 }}
                 className="card-b shadow  mt-5 mx-auto d-flex justify-content-evenly d-flex flex-wrap " >
                 {
@@ -44,9 +41,9 @@ export default function ContactList(props) {
                             no={index + 1}
                             contact={user}
                             sent={user.sent}
-                            remove={() => dispatch(deleteContactAsync(user.id))}
-                            resend={() => dispatch(createContactAsync(user.id, user.name, user.phone))}
-                            // update={(name, phone) => dispatch(updateContact(user.id, name, phone))}
+                            remove={() => dispatch(removeContactAsync(user.id))}
+                            resend={() => dispatch(addContactAsync(user.id, user.name, user.phone))}
+                            update={(name, phone) => dispatch(updateContactAsync(user.id, name, phone))}
                         />
                     ))
                 }
