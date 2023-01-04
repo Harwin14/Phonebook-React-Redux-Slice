@@ -68,7 +68,7 @@ export default class ContactItem extends Component {
                                 <button onClick={() => this.setState({ isEdit: true })} className='button-29'>
                                     Edit
                                 </button>
-                                <button onClick={this.props.sent ? this.props.remove : this.props.resend} className={this.props.sent ? 'button-49' : 'btn btn-w'}>
+                                <button onClick={this.props.sent ? this.props.remove : this.props.resend} className={this.props.sent ? 'button-49' : 'button-92'}>
                                     {this.props.sent ? 'Delete' : 'Resend'}
                                 </button>
                             </div>

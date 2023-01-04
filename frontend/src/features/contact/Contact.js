@@ -27,21 +27,26 @@ export default function Contact(props) {
             <div className="container shadow">
                 <div className="card">
                     <div className="card-header">
-                        <h1 className="text-center font"><FontAwesomeIcon icon={faContactBook} /> Phone Book Apps</h1>
+                        <h1 className="text-center font">
+                            <FontAwesomeIcon icon={faContactBook}/> Phone Book Apps</h1>
                     </div>
                     <div className="card-body">
                         {
-                            user.isAdd ? <ContactForm cancel={handleCancelForm} />
+                            user.isAdd ? <ContactForm cancel={handleCancelForm}/>
                                 :
-                                <button className="button-55" onClick={handleAddForm}><FontAwesomeIcon icon={faPlus} /> Add</button>
+                                <button 
+                                className="button-55" 
+                                onClick={handleAddForm}>
+                                    <FontAwesomeIcon icon={faPlus}/> Add
+                                </button>
                         }
-                        <ContactSearch />
+                        <ContactSearch/>
                     </div>
                 </div>
             </div>
             <div>
                 <div className="container px-6" >
-                    <ContactList />
+                    <ContactList/>
                 </div>
             </div>
         </div>
