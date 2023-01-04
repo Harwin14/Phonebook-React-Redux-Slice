@@ -70,7 +70,7 @@ export const contactSlice = createSlice({
             console.log('state', state);
 
         }
-    },   
+    },    
 
     extraReducers: (builder) => {
         builder
