@@ -245,7 +245,7 @@ export const search = (query) => (dispatch, getState) => {
     })
 
  
-};
+}; 
 
 // export const search = (query) => {
 //     return async (dispatch, getState) => {
