@@ -34,7 +34,6 @@ export default function ContactList(props) {
                 style={{ overflowY: "scroll", height: 350 }}
                 className="card-b shadow  mt-5 mx-auto d-flex justify-content-evenly d-flex flex-wrap " >
                 {
-                    //props.contact dapat dari mapStateToProps
                     contacts.map((user, index) => (
                         <ContactItem
                             key={user.id}

@@ -4,7 +4,6 @@ import ContactList from "./ContactList";
 import ContactSearch from "./ContactSearch"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faContactBook, faPlus } from '@fortawesome/free-solid-svg-icons'
-// import ContactSearch from "../../components/ContactSearch";
 
 
 export default function Contact(props) {

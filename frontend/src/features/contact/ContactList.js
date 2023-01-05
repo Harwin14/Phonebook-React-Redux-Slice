@@ -6,7 +6,8 @@ import {
     selectContact,
     deleteContactAsync,
     createContactAsync,
-    updateContactAsync
+    updateContactAsync,
+    pagination
 } from './contactSlice'
 
 
@@ -22,21 +23,20 @@ export default function ContactList(props) {
     // [dispatch] itu watcher / penonton yg []
     //klo variable berubah ngerender /jalan ulang
 
-    // const scrolling = (event) => {
-    //     var element = event.target;
-    //     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-    //         dispatch(loadMore())
-    //     }
-    // }
+    const scrolling = (event) => {
+        var element = event.target;
+        if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+            dispatch(pagination())
+        }
+    }
 
 
     return (
         <div
-            // onScroll={scrolling}
+             onScroll={scrolling}
             style={{ overflowY: "scroll", height: 350 }}
             className="card-b shadow  mt-5 mx-auto d-flex justify-content-evenly d-flex flex-wrap " >
             {
-                //props.contact dapat dari mapStateToProps
                 contacts.map((user, index) => (
                     <ContactItem
                         key={user.id}
@@ -45,7 +45,7 @@ export default function ContactList(props) {
                         sent={user.sent}
                         remove={() => dispatch(deleteContactAsync(user.id))}
                         resend={() => dispatch(createContactAsync({ id: user.id, name: user.name, phone: user.phone }))}
-                       update={(name, phone) => dispatch(updateContactAsync(user.id, name, phone))}
+                        update={(name, phone) => dispatch(updateContactAsync({ id: user.id, name, phone}))}
                     />
                 ))
             }

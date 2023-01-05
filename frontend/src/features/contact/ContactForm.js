@@ -46,7 +46,7 @@ export default function ContactForm(props) {
                             </div>
                             <div className="ms-1">
                                 <input type="string" className="form-control" name="name" onChange={handleInputChange} value={user.name} placeholder="name"
-                                    onInvalid={F => F.target.setCustomValidity('Enter Contact name here..')} onInput={F => F.target.setCustomValidity('')} required></input>
+                                    onInvalid={F => F.target.setCustomValidity('Enter Contact name here..')} onInput={F => F.target.setCustomValidity('')} maxLength="17" required></input>
                             </div>
                         </div>
 
@@ -56,7 +56,7 @@ export default function ContactForm(props) {
                             </div>
                             <div className="ms-1">
                                 <input type="string" className="form-control" name="phone" onChange={handleInputChange} value={user.phone} placeholder="phone"
-                                    onInvalid={F => F.target.setCustomValidity('Please enter phone number here..')} onInput={F => F.target.setCustomValidity('')} required></input>
+                                    onInvalid={F => F.target.setCustomValidity('Enter phone number here..')} onInput={F => F.target.setCustomValidity('')}maxLength="16" required></input>
                             </div>
                         </div>
 
