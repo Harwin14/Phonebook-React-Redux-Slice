@@ -243,9 +243,6 @@ export const search = (query) => (dispatch, getState) => {
         }
         dispatch(searchContact({ contact: data.data.contact, params }))
     })
-
- 
-    
 }; 
 
 // export const search = (query) => {
