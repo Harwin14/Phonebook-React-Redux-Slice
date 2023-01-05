@@ -21,8 +21,12 @@ const initialState = {
 export const readContactAsync = createAsyncThunk(
     'contact/readContact',
     async () => {
-        const { data } = await readContact();
-        return { contact: data.data.contact, page: data.data.page, totalPages: data.data.totalPages };
+        try {
+            const { data } = await readContact();
+            return { contact: data.data.contact, page: data.data.page, totalPages: data.data.totalPages };
+        } catch (err) {
+            console.log(err);
+        }
     }
 )
 
@@ -42,8 +46,12 @@ export const createContactAsync = createAsyncThunk(
 export const deleteContactAsync = createAsyncThunk(
     'contact/deleteContact',
     async (id) => {
-        await deleteContact(id);
-        return { id }
+        try {
+            await deleteContact(id);
+            return { id }
+        } catch (err) {
+            console.log(err);
+        }
     }
 )
 // export const deleteContactAsync = createAsyncThunk(
@@ -57,8 +65,12 @@ export const deleteContactAsync = createAsyncThunk(
 export const updateContactAsync = createAsyncThunk(
     'contact/updateContact',
     async ({ id, name, phone }) => {
-        const { data } = await updateContact(id, name, phone);
-        return { id, contact: data.data }
+        try {
+            const { data } = await updateContact(id, name, phone);
+            return { id, contact: data.data }
+        } catch (err) {
+            console.log(err)
+        }
     }
 )
 
@@ -125,7 +137,7 @@ export const contactSlice = createSlice({
             //     }))
             // })
             .addCase(readContactAsync.fulfilled, (state, action) => {
-                console.log('action', action)
+                // console.log('action', action)
                 state.status = 'idle'
                 state.value = {
                     data: action.payload.contact.map(item => {
@@ -139,13 +151,11 @@ export const contactSlice = createSlice({
                 }
             })
             .addCase(createContactAsync.pending, (state) => {
-                console.log('statePPP', state)
-
+                // console.log('statePPP', state)
                 state.status = 'loading'
             })
             .addCase(createContactAsync.fulfilled, (state, action) => {
-                console.log('action untuk create', action)
-
+                // console.log('action untuk create', action)
                 state.status = 'idle'
                 if (action.payload.success) {
                     state.value = {
@@ -234,7 +244,7 @@ export const search = (query) => (dispatch, getState) => {
         dispatch(searchContact({ contact: data.data.contact, params }))
     })
 
-
+ 
 };
 
 // export const search = (query) => {
