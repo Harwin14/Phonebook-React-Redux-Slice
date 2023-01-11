@@ -7,9 +7,7 @@ import { faBan, faCircleCheck, faAddressCard } from '@fortawesome/free-solid-svg
 
 
 export default function ContactForm(props) {
-
     const dispatch = useDispatch()
-
     const [user, setUser] = useState({
         name: '',
         phone: ''
@@ -20,6 +18,7 @@ export default function ContactForm(props) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
+        
         setUser({
             ...user,
             [name]: value

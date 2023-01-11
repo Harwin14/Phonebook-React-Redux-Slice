@@ -12,16 +12,12 @@ import {
 
 
 export default function ContactList(props) {
-
     const contacts = useSelector(selectContact)
-
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(readContactAsync())
     }, [dispatch])
-    // [dispatch] itu watcher / penonton yg []
-    //klo variable berubah ngerender /jalan ulang
 
     const scrolling = (event) => {
         var element = event.target;
@@ -37,10 +33,9 @@ export default function ContactList(props) {
             style={{ overflowY: "scroll", height: 350 }}
             className="card-b shadow  mt-5 mx-auto d-flex justify-content-evenly d-flex flex-wrap " >
             {
-                contacts.map((user, index) => (
+                contacts.map(user => (
                     <ContactItem
                         key={user.id}
-                        no={index + 1}
                         contact={user}
                         sent={user.sent}
                         remove={() => dispatch(deleteContactAsync(user.id))}

@@ -23,6 +23,7 @@ export const readContactAsync = createAsyncThunk(
     async () => {
         try {
             const { data } = await readContact();
+            console.log('lagi baca')
             return { contact: data.data.contact, page: data.data.page, totalPages: data.data.totalPages };
         } catch (err) {
             console.log(err);
@@ -35,7 +36,7 @@ export const createContactAsync = createAsyncThunk(
     async ({ id, name, phone }) => {
         try {
             const { data } = await createContact(name, phone);
-            console.log('DATA add', data)
+            console.log('DATA add', id)
             return { success: true, id, contact: data.data }
         } catch (err) {
             console.log('ggal add', err)
@@ -82,22 +83,29 @@ export const contactSlice = createSlice({
     reducers: {
         add: (state, action) => {
             console.log('action', action)
-            console.log('state', state)
-
-            state.value = {
-                ...state.value,
-                data: [
-                    ...state.value.data,
-                    {
-                        id: action.payload.id,
-                        name: action.payload.name,
-                        phone: action.payload.phone,
-                        sent: true
-                    }
-                ]
-            }
+            //     console.log('state', state)
+            state.value.data.unshift({
+                id: action.payload.id,
+                name: action.payload.name,
+                phone: action.payload.phone,
+                sent: true
+            })
+            // state.value = {
+            //     ...state.value,
+            //     data: [
+            //         ...state.value.data,
+            //         {
+            //             id: action.payload.id,
+            //             name: action.payload.name,
+            //             phone: action.payload.phone,
+            //             sent: true
+            //         }
+            //     ]
+            // }
+            console.log('isi data add', state.value)
         },
         searchContact: (state, action) => {
+            console.log(state ,'ini state search');
             state.value = {
                 //action.payload.contact dapat dari lemparan data search dibawah
                 data: action.payload.contact.map(item => {
@@ -155,13 +163,14 @@ export const contactSlice = createSlice({
                 state.status = 'loading'
             })
             .addCase(createContactAsync.fulfilled, (state, action) => {
-                // console.log('action untuk create', action)
+                console.log('action untuk create', action)
                 state.status = 'idle'
                 if (action.payload.success) {
                     state.value = {
                         ...state.value,
-                        data: [...state.value.data.map(item => {
-                            //     console.log('state untuk create', state.value.data)
+                        data: state.value.data.map(item => {
+                            console.log('masukk data', item.id, action.payload.id, action.payload.contact.id)
+
                             if (item.id === action.payload.id) {
                                 return {
                                     id: action.payload.contact.id,
@@ -171,11 +180,11 @@ export const contactSlice = createSlice({
                                 }
                             }
                             return item
-                        })]
+                        })
                     }
                 } else {
                     state.value = {
-                        ...state.value,
+                        ...state,
                         data: [...state.value.data.map(item => {
                             if (item.id === action.payload.id) {
                                 return {
@@ -192,14 +201,14 @@ export const contactSlice = createSlice({
                 state.status = 'idle'
                 state.value = {
                     ...state.value,
-                    data: [...state.value.data.filter(item => item.id !== action.payload.id)]
+                    data: state.value.data.filter(item => item.id !== action.payload.id)
                 }
             })
             .addCase(updateContactAsync.fulfilled, (state, action) => {
                 state.status = 'idle'
                 state.value = {
                     ...state.value,
-                    data: [...state.value.data.map(item => {
+                    data: state.value.data.map(item => {
                         // console.log('state update=>>',state.value.data)
                         // console.log('state update item=>>',action)
                         //action tuh respon data yg dirubah / update
@@ -212,7 +221,7 @@ export const contactSlice = createSlice({
                             }
                         }
                         return item
-                    })]
+                    })
                 }
             })
     },
@@ -223,10 +232,11 @@ export const selectContact = (state) => state.contact.value.data
 
 export const create = (name, phone) => (dispatch, getState) => {
     const id = Date.now()
-    if (!dispatch(search())) {
+    // if (!dispatch(search())) {
         dispatch(add({ id, name, phone }))
+        console.log('getstate', getState);
         dispatch(createContactAsync({ id, name, phone }))
-    }
+    // }
 };
 export const search = (query) => (dispatch, getState) => {
     let state = getState()
@@ -235,6 +245,7 @@ export const search = (query) => (dispatch, getState) => {
         ...query,
         page: 1
     }
+    console.log(getState(),'searchparam');
     request.get('users', { params }).then(({ data }) => {
         console.log('data search', data)
         params = {
@@ -243,7 +254,7 @@ export const search = (query) => (dispatch, getState) => {
         }
         dispatch(searchContact({ contact: data.data.contact, params }))
     })
-};  
+};
 
 // export const search = (query) => {
 //     return async (dispatch, getState) => {
