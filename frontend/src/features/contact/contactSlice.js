@@ -255,7 +255,6 @@ export const search = (query) => (dispatch, getState) => {
         dispatch(searchContact({ contact: data.data.contact, params }))
     })
 };
-    
 // export const search = (query) => {
 //     return async (dispatch, getState) => {
 //         let state = getState()
