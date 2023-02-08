@@ -14,17 +14,3 @@ export const updateContact = (id, name, phone) => request.put(`users/${id}`,{nam
 
 export const deleteContact = (id) => request.delete(`users/${id}`)
 
-// export const search = (query) =>  getState => {
-//       let state = getState()
-//       let params = {
-//           ...state.contacts.params,
-//           ...query,
-//           page: 1
-//       }
-//           const { data } = request.get('users', { params })
-//           params = {
-//               ...params,
-//               totalPages: data.data.totalPages
-//           }  
-// }
-

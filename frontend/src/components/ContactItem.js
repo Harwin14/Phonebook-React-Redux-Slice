@@ -33,7 +33,7 @@ export default class ContactItem extends Component {
                     <div className='card-body h-500 w-500' >
                         <div className="card">
                             <input type='text' name='name' value={this.state.name} onChange={this.handleInputChange}
-                                className='px-2 py-1 border border-blue-400/75 rounded-lg w-full form-control' maxLength="17" required />
+                                className='px-2 py-1 form-control' maxLength="17" required />
                         </div>
                         <div className=''>
                             <input type='tel' name='phone' id='phone' value={this.state.phone} onChange={this.handleInputChange}
@@ -42,7 +42,6 @@ export default class ContactItem extends Component {
                         <div className='d-flex justify-content-around align-items-stretch py-2'>
                             <button onClick={this.handleUpdate}
                                 className='button-87'> Update</button>
-
                             <button type='button' onClick={() => this.setState({ isEdit: false })}
                                 className='button-85'> Cancel</button>
                         </div>
@@ -53,8 +52,7 @@ export default class ContactItem extends Component {
             )
         } else {
             return (
-
-                <div className="w-5 my-3 mx-3 shadow py-3 px-4 cardlist" >
+                <div className="my-5 mx-4 shadow py-3 px-4 cardlist" >
                     <div className='' >
                         <div className="">
                             <div className=''><FontAwesomeIcon icon={faIdBadge} /> <span className='font'> Name : </span><span>{this.state.name}</span>

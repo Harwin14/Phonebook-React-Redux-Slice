@@ -161,7 +161,7 @@ router.get('/', async function (req, res, next) {
     } else {
       const { count, rows } = await models.User.findAndCountAll({
         order: [
-          ["id", "ASC"]
+          ["id", "DESC"]
         ],
         limit,
         offset
