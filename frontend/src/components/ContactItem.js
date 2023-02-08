@@ -54,7 +54,7 @@ export default class ContactItem extends Component {
             return (
                 <div className="my-5 mx-4 shadow py-3 px-4 cardlist" >
                     <div className='' > 
-                        <div className="">
+                        <div className=""> 
                             <div className=''><FontAwesomeIcon icon={faIdBadge} /> <span className='font'> Name : </span><span>{this.state.name}</span>
                             </div>
                             <div className=''>
