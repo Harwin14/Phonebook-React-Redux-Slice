@@ -49,7 +49,7 @@ export default class ContactItem extends Component {
                     </div>
 
                 </div>
-            )
+            )  
         } else {
             return (
                 <div className="my-5 mx-4 shadow py-3 px-4 cardlist" >
