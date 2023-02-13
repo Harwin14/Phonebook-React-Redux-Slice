@@ -45,11 +45,9 @@ export default class ContactItem extends Component {
                             <button type='button' onClick={() => this.setState({ isEdit: false })}
                                 className='button-85'> Cancel</button>
                         </div>
-
                     </div>
-
                 </div>
-            )  
+            )   
         } else {    
             return (
                 <div className="my-5 mx-4 shadow py-3 px-4 cardlist" >
@@ -68,7 +66,7 @@ export default class ContactItem extends Component {
                                     {this.props.sent ? 'Delete' : 'Resend'}
                                 </button>
                             </div>
-
+   
                         </div>
 
                     </div>
