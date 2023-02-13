@@ -66,7 +66,7 @@ export default class ContactItem extends Component {
                                     {this.props.sent ? 'Delete' : 'Resend'}
                                 </button>
                             </div>
-       
+        
                         </div>
 
                     </div>
