@@ -82,7 +82,7 @@
 
 
 let vowels = 'aeiou'
-
+ 
 for (let i = 0; i < vowels.length; i++) { 
 
 console.log(vowels[i]);
