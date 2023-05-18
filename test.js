@@ -77,13 +77,13 @@
 
 // function roar(){
 //     console.log(this.sound);
-// }
+// } 
 // roar.bind(bear)
 
 
 let vowels = 'aeiou'
 
-for (let i = 0; i < vowels.length; i++) {
+for (let i = 0; i < vowels.length; i++) { 
 
 console.log(vowels[i]);
 }
